@@ -7,6 +7,7 @@ from .views.profile import ProfileoView
 from .views.project import ProjectListView
 from .views.task import TaskListView
 from .views.subtask import SubTaskListView
+from .views.comment import CommentCreateView, CommentListView
 
 
 urlpatterns = [
@@ -45,5 +46,17 @@ urlpatterns = [
         route="subtask-list/",
         view=SubTaskListView.as_view(),
         name="subtask_list",
+    ),
+    # http://localhost:8000/api/user/comment-create/
+    path(
+        route="comment-create/",
+        view=CommentCreateView.as_view(),
+        name="comment_create",
+    ),
+    # http://localhost:8000/api/user/comment-list/
+    path(
+        route="comment-list/",
+        view=CommentListView.as_view(),
+        name="comment_list",
     ),
 ]
