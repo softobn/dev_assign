@@ -17,4 +17,9 @@ urlpatterns = [
         view=include("user_api.urls"),
         name="user",
     ),
+    path(
+        route="api/developer/",
+        view=include("developer_api.urls"),
+        name="developer",
+    ),
 ]
