@@ -1,6 +1,7 @@
 from django.urls import path
 
 from .views.subtask import DeveloperCreateSubTaskView, DeveloperUpdateSubTaskView, DeveloperMarkSubTaskView
+from .views.task import DeveloperMarkTaskView
 
 
 urlpatterns = [
@@ -21,5 +22,11 @@ urlpatterns = [
         route="subtask-mark/",
         view=DeveloperMarkSubTaskView.as_view(),
         name="developer_subtask_mark",
+    ),
+    # http://localhost:8000/api/developer/task-mark/
+    path(
+        route="task-mark/",
+        view=DeveloperMarkTaskView.as_view(),
+        name="developer_task_mark",
     ),
 ]
