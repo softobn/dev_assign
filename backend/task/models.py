@@ -2,11 +2,13 @@ from django.db import models
 
 from utils.models import CommonInfo
 from project.models import ProjectModel
+from user.models import UserAccount
 
 
 class TaskModel(CommonInfo):
     title = models.CharField(max_length=100)
     project = models.ForeignKey(ProjectModel, on_delete=models.DO_NOTHING)
+    developer = models.ForeignKey(UserAccount, on_delete=models.DO_NOTHING, null=True, blank=True)
     description = models.CharField(max_length=200)
     requirements = models.TextField()
     deadline = models.DateField(null=True, blank=True)
