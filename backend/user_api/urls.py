@@ -4,6 +4,7 @@ from rest_framework_simplejwt.views import TokenRefreshView
 
 from .views.token import CustomTokenView
 from .views.profile import ProfileoView
+from .views.project import ProjectListView
 
 
 urlpatterns = [
@@ -24,5 +25,11 @@ urlpatterns = [
         route="profile/",
         view=ProfileoView.as_view(),
         name="profile",
+    ),
+    # http://localhost:8000/api/user/project-list/
+    path(
+        route="project-list/",
+        view=ProjectListView.as_view(),
+        name="project_list",
     ),
 ]

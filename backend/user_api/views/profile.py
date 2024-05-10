@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404
 
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 
@@ -18,4 +17,4 @@ class ProfileoView(APIView):
             UserAccount, phone_number=tokenValidation(request)["phone_number"]
         )
         serializer = ProfileSerializer(customer)
-        return Response(serializer.data, status=HTTP_200_OK)
+        return Response(serializer.data)

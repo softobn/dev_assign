@@ -1,5 +1,4 @@
 from rest_framework.response import Response
-from rest_framework import status
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -34,4 +33,4 @@ class CustomTokenView(TokenObtainPairView):
 
             return Response(token_data)
         
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response("unsuccess")
