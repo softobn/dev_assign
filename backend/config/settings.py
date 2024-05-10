@@ -30,6 +30,7 @@ LOCAL_APPS = [
     "comment",
     "manager_api",
     "user_api",
+    "developer_api",
 ]
 
 THIRD_PARTY_APPS = [
