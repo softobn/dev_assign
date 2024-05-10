@@ -27,6 +27,7 @@ LOCAL_APPS = [
     "task",
     "on_task",
     "subtask",
+    "comment",
 ]
 
 THIRD_PARTY_APPS = [
