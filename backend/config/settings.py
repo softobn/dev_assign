@@ -26,6 +26,7 @@ LOCAL_APPS = [
     "project",
     "task",
     "on_task",
+    "subtask",
 ]
 
 THIRD_PARTY_APPS = [
