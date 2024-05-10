@@ -8,8 +8,13 @@ urlpatterns = [
         name="admin",
     ),
     path(
-        route="api/v1/manager/",
+        route="api/manager/",
         view=include("manager_api.urls"),
         name="manager",
+    ),
+    path(
+        route="api/user/",
+        view=include("user_api.urls"),
+        name="user",
     ),
 ]
