@@ -8,6 +8,7 @@ from .views.project import ProjectListView
 from .views.task import TaskListView
 from .views.subtask import SubTaskListView
 from .views.comment import CommentCreateView, CommentListView
+from .views.developer import DeveloperRegisterView, DeveloperListView
 
 
 urlpatterns = [
@@ -58,5 +59,17 @@ urlpatterns = [
         route="comment-list/",
         view=CommentListView.as_view(),
         name="comment_list",
+    ),
+    # http://localhost:8000/api/user/developer-register/
+    path(
+        route="developer-register/",
+        view=DeveloperRegisterView.as_view(),
+        name="developer_register",
+    ),
+    # http://localhost:8000/api/user/developer-list/
+    path(
+        route="developer-list/",
+        view=DeveloperListView.as_view(),
+        name="developer_list",
     ),
 ]
