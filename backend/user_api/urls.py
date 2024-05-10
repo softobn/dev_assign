@@ -4,11 +4,11 @@ from rest_framework_simplejwt.views import TokenRefreshView
 
 from .views.token import CustomTokenView
 from .views.profile import ProfileoView
-from .views.project import ProjectListView
+from .views.project import ProjectListView, ProjectDoneView, ProjectInprocessView, ProjectCreatedCountView
 from .views.task import TaskListView
 from .views.subtask import SubTaskListView
 from .views.comment import CommentCreateView, CommentListView
-from .views.developer import DeveloperRegisterView, DeveloperListView
+from .views.developer import DeveloperRegisterView, DeveloperListView, DeveloperCountView
 
 
 urlpatterns = [
@@ -71,5 +71,29 @@ urlpatterns = [
         route="developer-list/",
         view=DeveloperListView.as_view(),
         name="developer_list",
+    ),
+    # http://localhost:8000/api/user/project-done/
+    path(
+        route="project-done/",
+        view=ProjectDoneView.as_view(),
+        name="project_done",
+    ),
+    # http://localhost:8000/api/user/project-inprocess/
+    path(
+        route="project-inprocess/",
+        view=ProjectInprocessView.as_view(),
+        name="project_inprocess",
+    ),
+    # http://localhost:8000/api/user/project-created/
+    path(
+        route="project-created/",
+        view=ProjectCreatedCountView.as_view(),
+        name="project_created",
+    ),
+    # http://localhost:8000/api/user/developer-count/
+    path(
+        route="developer-count/",
+        view=DeveloperCountView.as_view(),
+        name="developer_count",
     ),
 ]

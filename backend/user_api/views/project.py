@@ -20,3 +20,30 @@ class ProjectListView(APIView):
         projects = get_list_or_404(ProjectModel, is_active=True)
         serializer = ProjectListSerializer(projects, many=True)        
         return Response(serializer.data)
+
+
+class ProjectDoneView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        projects = ProjectModel.objects.filter(is_complete=True, is_active=True)
+        counted = projects.count()        
+        return Response({"done": counted})
+
+
+class ProjectInprocessView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        projects = ProjectModel.objects.filter(is_complete=False, is_active=True)
+        counted = projects.count()        
+        return Response({"inprocess": counted})
+
+
+class ProjectCreatedCountView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        projects = ProjectModel.objects.filter()
+        counted = projects.count()        
+        return Response({"created": counted})

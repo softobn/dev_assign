@@ -42,3 +42,12 @@ class DeveloperListView(APIView):
         developers = UserAccount.objects.filter(is_manager=False)
         serializer = DeveloperRegisterSerializer(developers, many=True)
         return Response(serializer.data)
+
+
+class DeveloperCountView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        developers = UserAccount.objects.filter(is_manager=False)
+        counted = developers.count()        
+        return Response({"developer": counted-1})
