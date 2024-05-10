@@ -28,6 +28,7 @@ LOCAL_APPS = [
     "on_task",
     "subtask",
     "comment",
+    "manager_api",
 ]
 
 THIRD_PARTY_APPS = [
