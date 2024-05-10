@@ -7,9 +7,13 @@ class TaskAdmin(admin.ModelAdmin):
     def project(self, obj):
         return obj.project.title
     
+    def developer(self, obj):
+        return obj.developer.email
+    
     list_display = (
         "title",
         "project",
+        "developer",
         "deadline",
         "is_complete",
         "is_active",
