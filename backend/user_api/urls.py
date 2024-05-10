@@ -6,6 +6,7 @@ from .views.token import CustomTokenView
 from .views.profile import ProfileoView
 from .views.project import ProjectListView
 from .views.task import TaskListView
+from .views.subtask import SubTaskListView
 
 
 urlpatterns = [
@@ -38,5 +39,11 @@ urlpatterns = [
         route="task-list/",
         view=TaskListView.as_view(),
         name="task_list",
+    ),
+    # http://localhost:8000/api/user/subtask-list/
+    path(
+        route="subtask-list/",
+        view=SubTaskListView.as_view(),
+        name="subtask_list",
     ),
 ]
