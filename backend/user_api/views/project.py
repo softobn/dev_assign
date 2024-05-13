@@ -13,8 +13,13 @@ class ProjectListView(APIView):
 
     def get(self, request):
         manager_id = request.query_params.get("manager_id")
+        is_active = request.query_params.get("is_active")
         if manager_id:
             projects = ProjectModel.objects.filter(manager__id=manager_id)
+            serializer = ProjectListSerializer(projects, many=True)        
+            return Response(serializer.data)
+        if is_active:
+            projects = ProjectModel.objects.filter(is_active=is_active)
             serializer = ProjectListSerializer(projects, many=True)        
             return Response(serializer.data)
         projects = get_list_or_404(ProjectModel, is_active=True)
