@@ -18,4 +18,5 @@ class ProjectListSerializer(ModelSerializer):
             "planned_end",
             "deadline",
             "is_complete",
+            "is_active",
             ]
