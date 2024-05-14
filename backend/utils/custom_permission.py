@@ -6,7 +6,7 @@ from utils.utils import tokenValidation
 class IsDeveloper(BasePermission):
     def has_permission(self, request, view):
         payload = tokenValidation(request)
-        if payload and payload.get("is_manager") is True:
+        if payload and payload.get("is_manager") is False:
             return True
         else:
             False

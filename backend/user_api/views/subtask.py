@@ -2,14 +2,14 @@ from django.shortcuts import get_list_or_404
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny
 
 from subtask.models import SubTaskModel
+from utils.custom_permission import IsDeveloper, IsManager
 from ..serializers.subtask import SubTaskListSerializer
 
 
 class SubTaskListView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsDeveloper]
 
     def get(self, request):
         task_id = request.query_params.get("task_id")
