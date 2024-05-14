@@ -13,7 +13,6 @@ class ManagerCreateProjectSerializer(ModelSerializer):
             "description",
             "requirements",
             "thumbnail",
-            "images",
             "planned_start",
             "planned_end",
             "deadline",

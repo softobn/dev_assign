@@ -14,8 +14,11 @@ class ManagerCreateProjectView(APIView):
     permission_classes = [IsManager]
 
     def post(self, request):
-        serializer = ManagerCreateProjectSerializer(data=request.data)
-        manager = get_object_or_404(UserAccount, id=tokenValidation(request)["id"])
+        data = request.data
+        manager = tokenValidation(request)["id"]
+        data["manager"] = manager
+        serializer = ManagerCreateProjectSerializer(data=data)
+        manager = get_object_or_404(UserAccount, id=manager)
         manager.total_project += 1
         manager.save()
         if serializer.is_valid():
