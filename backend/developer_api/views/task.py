@@ -21,7 +21,13 @@ class DeveloperMarkTaskView(APIView):
             task = get_object_or_404(TaskModel, id=task_id)
             if task.deadline >= datetime.now().date():
                 task.is_complete = True
+                task.is_active = False
                 task.save()
                 return Response("success")
+            else:
+                task.is_complete = True
+                task.save()
+                return Response("success")
+
         
         return Response("unsuccess")
