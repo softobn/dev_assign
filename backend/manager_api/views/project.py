@@ -1,3 +1,6 @@
+from datetime import datetime
+
+from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404
 
 from rest_framework.response import Response
@@ -5,6 +8,7 @@ from rest_framework.views import APIView
 
 from user.models import UserAccount
 from project.models import ProjectModel
+from task.models import TaskModel
 from utils.custom_permission import IsManager
 from utils.utils import tokenValidation
 from ..serializers.project import ManagerCreateProjectSerializer
@@ -44,5 +48,38 @@ class ManagerUpdateProjectView(APIView):
                 return Response("success")
             else:
                 return Response(serializer.errors)
+        
+        return Response("unsuccess")
+
+
+class ManagerMarkprojectView(APIView):
+    permission_classes = [IsManager]
+
+    def validate_parameter(self, project_id):
+        return project_id is not None
+    
+    def taskComplete(self, id):
+        tasks = TaskModel.objects.filter(project__id=id)
+        task_counts = tasks.aggregate(
+            total_tasks=Count('id'),
+            complete_tasks=Count('id', filter=Q(is_complete=True))
+        )
+
+        all_complete = task_counts['total_tasks'] == task_counts['complete_tasks']
+        return all_complete
+
+    def patch(self, request):
+        project_id = request.data.get("project_id")
+        if self.validate_parameter(project_id) is True:
+            project = get_object_or_404(ProjectModel, id=project_id)
+            if project.deadline >= datetime.now().date() and self.taskComplete(project_id) is True:
+                project.is_complete = True
+                project.is_active = False
+                project.save()
+                return Response("success")
+            elif self.taskComplete(project_id) is True:
+                project.is_complete = True
+                project.save()
+                return Response("success")
         
         return Response("unsuccess")
