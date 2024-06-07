@@ -41,5 +41,5 @@ class CommentListView(APIView):
             return Response(serializer.data)
 
         comments = get_list_or_404(CommentModel)
-        serializer = CommentListSerializer(comments, many=True)        
+        serializer = CommentListSerializer(comments, many=True)   
         return Response(serializer.data)
