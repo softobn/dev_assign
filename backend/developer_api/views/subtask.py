@@ -2,14 +2,14 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
 
 from subtask.models import SubTaskModel
-from utils.custom_permission import IsDeveloper
 from ..serializers.subtask import SubTaskCreateSerializer
 
 
 class DeveloperCreateSubTaskView(APIView):
-    permission_classes = [IsDeveloper]
+    permission_classes = [AllowAny]
 
     def post(self, request):
         serializer = SubTaskCreateSerializer(data=request.data)
@@ -21,7 +21,7 @@ class DeveloperCreateSubTaskView(APIView):
 
 
 class DeveloperUpdateSubTaskView(APIView):
-    permission_classes = [IsDeveloper]
+    permission_classes = [AllowAny]
 
     def validate_parameter(self, subtask_id):
         return subtask_id is not None
@@ -39,7 +39,7 @@ class DeveloperUpdateSubTaskView(APIView):
 
 
 class DeveloperMarkSubTaskView(APIView):
-    permission_classes = [IsDeveloper]
+    permission_classes = [AllowAny]
 
     def validate_parameter(self, subtask_id):
         return subtask_id is not None

@@ -5,17 +5,17 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from user.models import UserAccount
 from project.models import ProjectModel
 from task.models import TaskModel
-from utils.custom_permission import IsManager
 from utils.utils import tokenValidation
 from ..serializers.project import ManagerCreateProjectSerializer
 
 
 class ManagerCreateProjectView(APIView):
-    permission_classes = [IsManager]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         data = request.data
@@ -33,7 +33,7 @@ class ManagerCreateProjectView(APIView):
 
 
 class ManagerUpdateProjectView(APIView):
-    permission_classes = [IsManager]
+    permission_classes = [AllowAny]
 
     def validate_parameter(self, project_id):
         return project_id is not None
@@ -53,7 +53,7 @@ class ManagerUpdateProjectView(APIView):
 
 
 class ManagerMarkprojectView(APIView):
-    permission_classes = [IsManager]
+    permission_classes = [AllowAny]
 
     def validate_parameter(self, project_id):
         return project_id is not None

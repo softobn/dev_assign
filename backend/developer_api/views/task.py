@@ -4,13 +4,13 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
 
 from task.models import TaskModel
-from utils.custom_permission import IsDeveloper
 
 
 class DeveloperMarkTaskView(APIView):
-    permission_classes = [IsDeveloper]
+    permission_classes = [AllowAny]
 
     def validate_parameter(self, task_id):
         return task_id is not None
