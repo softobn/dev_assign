@@ -14,7 +14,7 @@ class SubTaskModel(CommonInfo):
 
 
     def __str__(self):
-        return f"{self.task.title} : {self.title}"
+        return f"{self.title}"
 
     class Meta:
         verbose_name = "Sub Task"
