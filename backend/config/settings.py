@@ -25,7 +25,6 @@ LOCAL_APPS = [
     "user",
     "project",
     "task",
-    "on_task",
     "subtask",
     "comment",
     "manager_api",
